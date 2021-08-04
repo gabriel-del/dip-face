@@ -3,11 +3,11 @@ import cv2
 import matplotlib.pyplot as plt # Matplotlib
 
 cap = cv2.VideoCapture(0)
-face_cascade = cv2.CascadeClassifier('class/haarcascade_frontalface_default.xml')
-smile_cascade = cv2.CascadeClassifier('class/haarcascade_smile.xml')
-green = False
-blue = False
-white = False
+face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
+smile_cascade = cv2.CascadeClassifier('haarcascade_smile.xml')
+green = True
+blue = True
+white = True
 inpaint = True
 
 while(True):
