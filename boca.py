@@ -14,15 +14,15 @@ while(True):
     ret, frame = cap.read()
     img = cv2.flip(frame, 1)
 
-    cinza = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     img_c = img.copy()
     inpainted = img.copy()
     mascara = img.copy()
     mascara[:] = (0,0,0)
-    for (x,y,w,h) in face_cascade.detectMultiScale(cinza, scaleFactor=1.3, minNeighbors=5):
+    for (x,y,w,h) in face_cascade.detectMultiScale(gray, scaleFactor=1.3, minNeighbors=5):
         if green: cv2.rectangle(img_c,(x,y),(x+w,y+h),(0,255,0),2) 
         if blue: cv2.rectangle(img_c,(x,y+int(h/2)),(x+w,y+h),(255,0,0),8)
-        rdi = cinza[y+int(h/2):y+h, x:x+w] #blue
+        rdi = gray[y+int(h/2):y+h, x:x+w] #blue
         for (ox,oy,ow,oh) in smile_cascade.detectMultiScale(rdi):
             if white: cv2.rectangle(img_c,(ox+x,oy+y+int(h/2)),(ox+ow+x,oy+oh+y+int(h/2)),(255,255,255),-1)
             cv2.rectangle(mascara,(ox+x,oy+y+int(h/2)),(ox+ow+x,oy+oh+y+int(h/2)),(255,255,255),-1)
